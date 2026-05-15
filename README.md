@@ -1,58 +1,85 @@
-Image Augmentation Tool (Brightness Adjustment)
-This Python tool is designed to download images from a provided list of URLs and generate multiple versions of each image with different brightness levels. This is specifically useful for Deep Learning and Object Detection tasks (like YOLO) to perform Data Augmentation.
+# Image Augmentation Tool (Brightness Adjustment)
 
-Features
-URL-based processing: Reads image links directly from a .txt file.
+This Python tool downloads images from a list of URLs and generates multiple brightness variations for each image. It is designed for Deep Learning and Object Detection workflows such as YOLO Data Augmentation.
 
-Brightness Levels: Automatically generates 3 versions of each image:
+## Features
 
-100% (Original)
+- Reads image URLs directly from a `.txt` file
+- Generates 3 brightness versions for every image:
+  - 100% (Original)
+  - 120% (Slightly Brighter)
+  - 150% (Very Bright)
+- Supports processing:
+  - The full dataset
+  - A custom image range
+- Automatically creates and organizes output files
+- Uses clear and consistent file naming
+- Handles broken links with request timeout protection
 
-120% (Slightly Brighter)
+## Project Structure
 
-150% (Very Bright)
-
-Flexible Execution: Allows processing the entire dataset or a specific range of images.
-
-Automatic Organization: Saves all generated images in a dedicated folder with clear naming conventions.
-
-Project Structure
-Plaintext
+```plaintext
 Augmentation_project/
-├── generated_links_4202.txt  # Your file containing 4202 URLs
-├── main.py                   # The Python script
-├── README.md                 # Project documentation
-└── augmented_dataset/        # Created automatically (Contains 12,606 images)
-Naming Convention
-For every image processed (e.g., image_01.jpg), the tool creates:
+├── generated_links_4202.txt   # File containing image URLs
+├── process_images.py                    # Main Python script
+├── README.md                  # Documentation
+└── augmented_dataset/         # Auto-generated output folder
+```
 
+## Output Naming Convention
+
+For every processed image, the tool creates:
+
+```plaintext
 image_01_br100.jpg
-
 image_01_br120.jpg
-
 image_01_br150.jpg
+```
 
-Prerequisites
-Make sure you have Python installed, then install the required libraries:
+## Requirements
 
-Bash
+Install the required Python libraries before running the project:
+
+```bash
 pip install opencv-python requests numpy
-How to Use
-Place your links file generated_links_4202.txt in the same directory as the script.
+```
 
-Run the script:
+## How to Use
 
-Bash
+1. Place the file `generated_links_4202.txt` in the same directory as `main.py`
+
+2. Run the script:
+
+```bash
 python main.py
-The script will ask: Do you want to process all images? (yes/no):
+```
 
-Type yes to process all 4202 images.
+3. Choose processing mode when prompted:
 
-Type no to specify a custom range (e.g., from image 1 to 100).
+```plaintext
+Do you want to process all images? (yes/no)
+```
 
-Technical Details
-Library: OpenCV (cv2) for image manipulation.
+- Type `yes` to process the entire dataset
+- Type `no` to select a custom image range
 
-Method: convertScaleAbs for efficient pixel-wise scaling.
+Example:
 
-Timeout: 20-second timeout per download to prevent hanging on broken links.
+```plaintext
+Start image: 1
+End image: 100
+```
+
+## Technical Details
+
+- Library Used: OpenCV (`cv2`)
+- Brightness Method: `convertScaleAbs`
+- Download Timeout: 20 seconds per image
+- Designed for large-scale dataset augmentation workflows
+
+## Use Cases
+
+- YOLO Dataset Augmentation
+- Object Detection Training
+- Computer Vision Preprocessing
+- Improving Model Robustness Under Different Lighting Conditions
