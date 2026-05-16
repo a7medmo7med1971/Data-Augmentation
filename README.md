@@ -51,7 +51,7 @@ pip install opencv-python requests numpy
 2. Run the script:
 
 ```bash
-python main.py
+python process_images.py
 ```
 
 3. Choose processing mode when prompted:
